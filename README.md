@@ -11,7 +11,7 @@ The following things are provided in this repository:
 - The destination database table (see `database/initdb.d/setup.sql`)
 - A bare bones Flask app (see `app/server.py`)
 
-**We recommend you spend a maximum of two hours on it, and don't worry if you didn’t cover all of the requirements.**
+**We recommend you spend a maximum of two hours on it, and don't worry if you didn't cover all of the requirements.**
 
 ## Instructions
 
