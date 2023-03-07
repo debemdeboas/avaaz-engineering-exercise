@@ -8,6 +8,44 @@
 <div class="container">
     <h1>welcome to AvaazDB</h1>
 
-    
+    <form method="GET" action="/search">    
+        <div>
+            <h3>filter by title or url</h3>
+
+            <label for="db-search-title">Search by title</label>
+            <input type="search" id="db-search-title" name="db-search-title">
+
+            <label for="db-search-url">Search by URL</label>
+            <input type="search" id="db-search-url" name="db-search-url">
+        </div>
+
+        <div>
+            <h3>filter by date</h3>
+
+            <label for="datetime-picker-date">Date</label>
+            <input type="date" id="datetime-picker-date" name="datetime-picker-date">
+            <br>
+            <label for="datetime-picker-enddate">End date (only for "between")</label>
+            <input type="date" id="datetime-picker-enddate" name="datetime-picker-enddate">
+
+            <div>
+                <label for="radio-datefilter-before">Before</label>
+                <input type="radio" id="radio-datefilter-before" name="radio-datefilter" value="before" required checked>
+
+                <br>
+
+                <label for="radio-datefilter-after">After</label>
+                <input type="radio" id="radio-datefilter-after" name="radio-datefilter" value="after">
+
+                <br>
+
+                <label for="radio-datefilter-between">Between</label>
+                <input type="radio" id="radio-datefilter-between" name="radio-datefilter" value="between">
+            </div>
+        </div>
+
+        <button type="submit">Search!</button>
+    </form>
+
 </div>
 {% endblock %}
