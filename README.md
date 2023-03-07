@@ -1,23 +1,80 @@
 # Avaaz Engineering Exercise
 
-Thanks for your interest in joining Avaaz! We are thrilled that you considered working with us.
+To run this application, simply run:
 
-Your task is to build a small application that allows a user to search data using several filters:
-- Date range (after, before, and between)
-- Title (text search, case-insensitive, full or partial matches)
-- URL (full or partial matches)
+```cli
+$ docker compose up --build
+```
 
-The following things are provided in this repository:
-- The destination database table (see `database/initdb.d/setup.sql`)
-- A bare bones Flask app (see `app/server.py`)
+The API container will start only after the database is ready.
 
-**We recommend you spend a maximum of two hours on it, and don't worry if you didn't cover all of the requirements.**
+You will need to populate the DB.
+This can be done by sending JSON data to the `POST /ingest/json` endpoint of this API.
 
-## Instructions
+## Ingesting JSON data
 
-- Use Python and Flask for your application
-- The application ingests JSON source data (see the input folder)
-- The application stores valid data and normalized datetimes in the provided database
-- The application allows searching the data through an API endpoint (using the filters described above)
+The method I chose to populate the database using the provided JSON data was using Insomnia,
+however a cURL command can be run that serves the same purpose.
 
-Submit your solution by sending a zipped file via email to your Avaaz recruiting contact (you can reply to your existing email thread).
+```cli
+$ curl localhost:5000/ingest/json \
+    -X POST \
+    -d @input/data.json \
+    -H 'Content-Type: application/json'
+```
+
+## Debugging using VSCode and Docker
+
+I provided some VSCode configuration files to run the project using VSCode's Docker integration.
+
+The Docker integration can be a bit problematic sometimes, so if you encounter an error
+such as "timeout" or similar, simply re-run the task until the homepage opens up in your browser.
+
+Before running you need to start the database.
+I also provided a startup script for the development database and isolated Docker network.
+To run it, execute `./setup-dev-env.sh`.
+
+## Tests
+
+This section contains a few tests and screen captures.
+
+### Main page
+
+The main page is an extremely crude representation of the application.
+
+![Homepage](./doc/img/main%20page.png)
+
+### Queries
+
+Each query is followed by its parameters and its result.
+
+Search by title:
+
+- Title: SYstEMATic
+
+![Search by title](./doc/img/result-title.png)
+
+Search by URL:
+
+- URL: .php
+
+![Search by URL](./doc/img/result-url.png)
+
+Search by date after:
+
+- Date: 06-Oct-2015
+
+![Search by date after](./doc/img/result-date-after.png)
+
+Search by date before:
+
+- Date: 31-Dec-1971
+
+![Search by date before](./doc/img/result-date-before.png)
+
+Search by date between:
+
+- Start date: 07-Mar-2012
+- End date: 07-Jun-2013
+
+![Search by date between](./doc/img/result-date-between.png)

@@ -22,6 +22,10 @@
 				"env": {
 					"FLASK_APP": "server.py"
 				},
+				"envFiles": [
+					"dev.env"
+				],
+				"ports": [{"containerPort": 5000, "hostPort": 5000}],
 				"network": "avaaz"
 			},
 			"python": {
